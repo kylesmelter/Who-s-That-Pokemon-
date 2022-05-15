@@ -16,7 +16,7 @@ function getFetch() {
 document.querySelector(".submit-button").addEventListener("click", guess);
 
 function guess() {
-  const guess = document.querySelector(".submitted-guess").value;
+  const guess = document.querySelector(".submitted-guess").value.toLowerCase();
 
   fetch(`https://pokeapi.co/api/v2/pokemon/${random}`)
     .then((res) => res.json())
