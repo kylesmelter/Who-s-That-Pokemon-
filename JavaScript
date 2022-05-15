@@ -1,0 +1,30 @@
+document.querySelector(".get-button").addEventListener("click", getFetch);
+let random = Math.floor(Math.random() * 151 + 1);
+
+function getFetch() {
+  fetch(`https://pokeapi.co/api/v2/pokemon/${random}/`)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.name);
+      document.querySelector("img").src = data.sprites.front_default;
+    })
+    .catch((err) => {
+      console.log(`error ${err}`);
+    });
+}
+
+document.querySelector(".submit-button").addEventListener("click", guess);
+
+function guess() {
+  const guess = document.querySelector(".submitted-guess").value;
+
+  fetch(`https://pokeapi.co/api/v2/pokemon/${random}`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (guess === data.name) {
+        alert("You're catching them all!");
+      } else {
+        alert("Try again!");
+      }
+    });
+}
